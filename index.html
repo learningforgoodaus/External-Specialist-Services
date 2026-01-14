@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>External Specialist Services Flip Cards</title>
+    <style>
+        :root {
+            --brand-dark-purple: #513873;
+            --brand-mid-purple: #9C7F9D;
+            --brand-light-purple: #C6B4D9;
+            --brand-darkest: #413659;
+            --brand-light-grey: #F8F9FA;
+            --emergency-red: #c0392b;
+            --white: #ffffff;
+            --transition-speed: 0.6s;
+            --bg-color: #f6f5f8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--brand-darkest);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        h1 {
+            color: var(--brand-dark-purple);
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .instruction-text {
+            color: var(--brand-mid-purple);
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        /* Grid container */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Fixed height as requested */
+        .flip-card {
+            background-color: transparent;
+            height: 210px;
+            perspective: 1000px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .flip-card:focus .flip-card-inner {
+            box-shadow: 0 0 0 3px var(--brand-light-purple);
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            border-radius: 12px;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        /* Front Side Styling */
+        .flip-card-front {
+            background-color: var(--brand-dark-purple);
+            color: var(--white);
+        }
+
+        .flip-card-front h2 {
+            font-size: 1.4rem;
+            margin: 10px 0 4px 0;
+            font-weight: 700;
+        }
+
+        .service-type {
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.95;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Icon Styling */
+        .card-icon {
+            width: 42px;
+            height: 42px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Back Side Styling */
+        .flip-card-back {
+            background-color: var(--white);
+            color: var(--brand-darkest);
+            transform: rotateY(180deg);
+            border: 2px solid var(--brand-dark-purple);
+            justify-content: space-between;
+        }
+
+        .flip-card-back .content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .flip-card-back p {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .flip-card-back strong {
+            color: var(--brand-dark-purple);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .contact-number {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--brand-dark-purple);
+            padding: 8px;
+            background: var(--brand-light-grey);
+            border-radius: 6px;
+            width: 100%;
+            display: block;
+        }
+
+        /* Emergency Specific Styling */
+        .emergency .flip-card-front {
+            background-color: var(--emergency-red);
+        }
+        
+        .emergency .flip-card-back {
+            border-color: var(--emergency-red);
+        }
+
+        .emergency .contact-number {
+            color: var(--emergency-red);
+            background: #fff5f5;
+        }
+
+        @media (hover: hover) {
+            .flip-card:hover .flip-card-inner {
+                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>External Specialist Services</h1>
+    <p class="instruction-text">Tap a card to view support details and contact numbers.</p>
+</header>
+
+<main class="card-grid" id="cardGrid">
+    <!-- 1800RESPECT -->
+    <div class="flip-card" tabindex="0" aria-label="1800RESPECT information">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                <h2>1800RESPECT</h2>
+                <span class="service-type">National Support</span>
+            </div>
+            <div class="flip-card-back">
+                <div class="content">
+                    <p><strong>Best For:</strong> 24/7 support for anyone affected by domestic or family violence.</p>
+                </div>
+                <span class="contact-number">1800 737 732</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 13YARN -->
+    <div class="flip-card" tabindex="0" aria-label="13YARN information">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <h2>13YARN</h2>
+                <span class="service-type">First Nations Support</span>
+            </div>
+            <div class="flip-card-back">
+                <div class="content">
+                    <p><strong>Best For:</strong> Crisis support run by and for First Nations people.</p>
+                </div>
+                <span class="contact-number">13 92 76</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- QLife -->
+    <div class="flip-card" tabindex="0" aria-label="QLife information">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <svg class="card-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>
+                <h2>QLife</h2>
+                <span class="service-type">LGBTQIA+ Support</span>
+            </div>
+            <div class="flip-card-back">
+                <div class="content">
+                    <p><strong>Best For:</strong> Peer support and referrals for LGBTQIA+ people of all ages.</p>
+                </div>
+                <span class="contact-number">1800 184 527</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kids Helpline -->
+    <div class="flip-card" tabindex="0" aria-label="Kids Helpline information">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <h2>Kids Helpline</h2>
+                <span class="service-type">Youth Support</span>
+            </div>
+            <div class="flip-card-back">
+                <div class="content">
+                    <p><strong>Best For:</strong> Free, private support for young people aged 5 to 25.</p>
+                </div>
+                <span class="contact-number">1800 55 1800</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lifeline (Updated Icon) -->
+    <div class="flip-card" tabindex="0" aria-label="Lifeline information">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <!-- Safety Circle / Lifebuoy Icon -->
+                <svg class="card-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="m4.93 4.93 2.83 2.83" />
+                    <path d="m16.24 16.24 2.83 2.83" />
+                    <path d="m19.07 4.93-2.83 2.83" />
+                    <path d="m7.76 16.24-2.83 2.83" />
+                </svg>
+                <h2>Lifeline</h2>
+                <span class="service-type">Crisis Prevention</span>
+            </div>
+            <div class="flip-card-back">
+                <div class="content">
+                    <p><strong>Best For:</strong> 24/7 crisis support and suicide prevention for anyone in distress.</p>
+                </div>
+                <span class="contact-number">13 11 14</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Men's Referral Service -->
+    <div class="flip-card" tabindex="0" aria-label="Men's Referral Service information">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                <h2>Men’s Referral</h2>
+                <span class="service-type">Behaviour Support</span>
+            </div>
+            <div class="flip-card-back">
+                <div class="content">
+                    <p><strong>Best For:</strong> Support for men who want to change violent behaviours.</p>
+                </div>
+                <span class="contact-number">1300 766 491</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency -->
+    <div class="flip-card emergency" tabindex="0" aria-label="Emergency information">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <h2>EMERGENCY</h2>
+                <span class="service-type">Immediate Danger</span>
+            </div>
+            <div class="flip-card-back">
+                <div class="content">
+                    <p><strong>Best For:</strong> If someone is in immediate physical danger right now.</p>
+                </div>
+                <span class="contact-number">Call: 000</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    document.querySelectorAll('.flip-card').forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.classList.toggle('flipped');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
